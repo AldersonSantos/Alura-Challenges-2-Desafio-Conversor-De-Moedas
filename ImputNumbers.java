@@ -53,7 +53,7 @@ public class ImputNumbers extends PlainDocument {
 		String regex = "";
 		switch (texto) {
 		case INPUTVALOR:
-			regex = "[^0-9 .]";
+			regex = "[^0-9.]";
 			break;
 
 		}
