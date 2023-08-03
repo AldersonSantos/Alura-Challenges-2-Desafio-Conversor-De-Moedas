@@ -4,9 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -22,7 +25,7 @@ import javax.swing.JTextField;
  *
  */
 
-public class ConversorDeMoedas extends JFrame implements ActionListener {
+public class ConversorDeMoedas extends JFrame implements ActionListener, KeyListener {
 
 	private static final long serialVersionUID = -2549117556670083627L;
 	private JMenuBar menuBar2, menuBar1;
@@ -36,8 +39,6 @@ public class ConversorDeMoedas extends JFrame implements ActionListener {
 	JPanel painelTextUser, painelrotulo, painelMenu2, painelMenu1, painelRotulo1, painelTaxa;
 
 	double textUsuario = 0.0;
-
-	JButton buttonCe;
 
 	/**
 	 * construtor permite criar um Jframe
@@ -81,7 +82,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener {
 		// iniciarJMenuBar
 		// menu1
 		menuBar1 = new JMenuBar();
-		m1Real = new JMenuItem("Brasil - Real".concat("   BRL"));
+		m1Real = new JMenuItem("Brasil - Real".concat("   BRL"));		
 		m1Euro = new JMenuItem("Europa - Euro".concat("   EUR"));
 		m1Libra = new JMenuItem("Reino Unido - Libra Esterlinas".concat("   GPB"));
 		m1PesoAr = new JMenuItem("Argentina - Peso Argentino".concat("   ARS"));
@@ -184,16 +185,16 @@ public class ConversorDeMoedas extends JFrame implements ActionListener {
 		// TTextField
 		campoTextUsuario = new JTextField(10);
 		campoTextUsuario.setBackground(null);
-		campoTextUsuario.setBorder(null);
-		campoTextUsuario.setFont(new Font("Arial", Font.BOLD, 55));
-		campoTextUsuario.setForeground(null);
-		campoTextUsuario.setText("1");
+		campoTextUsuario.setBorder(null);	
+		campoTextUsuario.setForeground(Color.black);
+		campoTextUsuario.setText("");
+		campoTextUsuario.addKeyListener(this);
 		// campoTextUsuario.setNavigationFilter(null);
 
 		// Jpainel
 		painelMenu2 = new JPanel();
 		painelMenu2.setSize(200, 25);
-		painelMenu2.setLocation(5, 95);
+		painelMenu2.setLocation(50, 95);
 		painelMenu2.setBackground(Color.lightGray);
 		painelMenu2.setBorder(null);
 		painelMenu2.setForeground(null);
@@ -203,7 +204,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener {
 		// Jpainel1
 		painelMenu1 = new JPanel();
 		painelMenu1.setSize(200, 25);
-		painelMenu1.setLocation(5, 230);
+		painelMenu1.setLocation(50, 230);
 		painelMenu1.setBackground(Color.lightGray);
 		this.add(painelMenu1);
 		painelMenu1.add(menuBar2);
@@ -219,16 +220,15 @@ public class ConversorDeMoedas extends JFrame implements ActionListener {
 		// JPanel4
 		painelTaxa = new JPanel();
 		painelTaxa.setSize(150, 25);
-		painelTaxa.setLocation(5, 265);
+		painelTaxa.setLocation(75, 265);
 		painelTaxa.setBackground(Color.lightGray);
-
 		this.add(painelTaxa);
 		painelTaxa.add(taxaConversao);
 
 		// Jpanel3
 		painelTextUser = new JPanel();
 		painelTextUser.setSize(300, 40);
-		painelTextUser.setLocation(5, 55);
+		painelTextUser.setLocation(132, 55);
 		painelTextUser.setBackground(Color.lightGray);
 		this.add(painelTextUser);
 		painelTextUser.add(campoTextUsuario);
@@ -251,15 +251,19 @@ public class ConversorDeMoedas extends JFrame implements ActionListener {
 	// dimunir font
 	public void fontText() {
 
-		if (numeroCaracteres <= 10) {
+			for(int i = 0; i <= numeroCaracteres; i++) {		
+							
+				if (numeroCaracteres <= 10) {
+				campoConversao.setFont(new Font("Arial", Font.CENTER_BASELINE, 27));
+				campoTextUsuario.setFont(new Font("Arial", Font.CENTER_BASELINE, 32));
+				
+				
+			}else  if(numeroCaracteres > 10) {				
+				campoConversao.setFont(new Font("Arial", Font.CENTER_BASELINE, 22));
+				campoTextUsuario.setFont(new Font("Arial", Font.CENTER_BASELINE, 30));
+			}		
 
-			campoConversao.setFont(new Font("Arial", Font.BOLD, 35));
-			campoTextUsuario.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
-
-		} else
-
-			campoConversao.setFont(new Font("Arial", Font.BOLD, 22));
-		campoTextUsuario.setFont(new Font("Arial", Font.BOLD, 30));
+		}	
 
 	}
 
@@ -281,8 +285,8 @@ public class ConversorDeMoedas extends JFrame implements ActionListener {
 		double taxaCambioRealPesoCl = 177.3908;
 		double taxaCambioRealDolar = 0.2081;
 		// real JLabel taxa
-		String realreal = "1 BRL = 1.00 BRL";
-		String realeuro = "1 BRL = 0.1912 EUR";
+		String realReal = "1 BRL = 1.00 BRL";
+		String realEuro = "1 BRL = 0.1912 EUR";
 		String realPesoAr = "1 BRL = 58.0304 ARS";
 		String realLibra = "1 BRL = 0.164 GPB";
 		String realPesoCl = "1 BRL = 177.3908 CLP";
@@ -376,13 +380,11 @@ public class ConversorDeMoedas extends JFrame implements ActionListener {
 		// verifivar se existe ponto na String
 		boolean checkPonto = text.contentEquals(charPonto);
 
-		
-		// get texto		
+		// get texto
 		numeroCaracteres = campoTextUsuario.getText().length();
 		
-		// moeda	
+		// moeda
 		NumberFormat valorDouble = NumberFormat.getNumberInstance(getLocale());
-		
 
 		// apagar o valor se houver mais de um "ponto"
 		if (text.contains(charPonto)) {
@@ -395,6 +397,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener {
 				for (int i = 0; i <= text.length(); i++) {
 
 					campoTextUsuario.setText(new String(campoTextUsuario.getText()).replace(text, "0"));
+					painelTextUser.setLocation(132, 55);
 					campoTextUsuario.setSelectionStart(0);
 
 				}
@@ -404,16 +407,14 @@ public class ConversorDeMoedas extends JFrame implements ActionListener {
 		}
 
 		// executar a conversao da moeda
+		if (numeroCaracteres == 0) {
 
-		// apagar ponto
-		if (checkPonto) {
+			conversor = 0.0;
+
+		} else if (checkPonto) {// apagar ponto
 
 			campoTextUsuario.setText(new String(campoTextUsuario.getText()).replaceAll(text, ""));
 			campoTextUsuario.setSelectionStart(0);
-
-		} else if (numeroCaracteres == 0) {
-
-			conversor = 0;
 
 		} else {
 
@@ -421,7 +422,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener {
 			if (menu1.getText() == m1Real.getText() && menu2.getText() == m2Real.getText()) {
 
 				conversor = Double.parseDouble(campoTextUsuario.getText()) * taxaCambioRealReal;
-				taxaConversor = String.format(realreal);
+				taxaConversor = String.format(realReal);
 
 			}
 
@@ -429,7 +430,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener {
 			if (menu1.getText() == m1Real.getText() && menu2.getText() == m2Euro.getText()) {
 
 				conversor = Double.parseDouble(campoTextUsuario.getText()) * taxaCambioRealEuro;
-				taxaConversor = String.format(realeuro);
+				taxaConversor = String.format(realEuro);
 
 				// euro => real
 			} else if (menu1.getText() == m1Euro.getText() && menu2.getText() == m2Real.getText()) {
@@ -695,6 +696,62 @@ public class ConversorDeMoedas extends JFrame implements ActionListener {
 
 		conversor();
 		fontText();
+	}
+/**
+ * 
+ * move o JPanel texto usuario quando digita
+ * 
+ */
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+		// mover JTextField
+		int localX = painelTextUser.getLocation().x;
+		int changeLocalX = localX - 8;
+		int changeLocalR = localX + 8;
+
+		// KeyEvent
+		int x = KeyEvent.VK_BACK_SPACE;
+		char t = e.getKeyChar();
+		// code char key
+		List<Number> number = new ArrayList<Number>();
+		number.add(46);
+		number.add(48);
+		number.add(49);
+		number.add(50);
+		number.add(51);
+		number.add(52);
+		number.add(53);
+		number.add(54);
+		number.add(55);
+		number.add(56);
+		number.add(57);
+		// mover se apertar key ou apagar string
+		if (t == x && localX <= 120) {
+			painelTextUser.setLocation(changeLocalR, 55);
+		} else {
+			for (int i = 0; i < number.size(); i++) {
+
+				Number ref = number.get(i);
+
+				if (t == ref.hashCode() && localX >= 20) {
+
+					painelTextUser.setLocation(changeLocalX, 55);
+				}
+			}
+		}		
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 
