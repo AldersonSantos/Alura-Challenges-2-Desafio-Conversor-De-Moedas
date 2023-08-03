@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"br.com.challenge.one.conversor","l":"ImputNumbers.CampoTexto"},{"p":"br.com.challenge.one.conversor","l":"ConversorAplicativo"},{"p":"br.com.challenge.one.conversor","l":"ConversorDeMoedas"},{"p":"br.com.challenge.one.conversor","l":"ImputNumbers"}];updateSearchResults();
