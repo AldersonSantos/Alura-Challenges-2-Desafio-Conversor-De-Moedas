@@ -17,9 +17,9 @@ public class ConversorAplicativo {
 		ConversorDeMoedas app = new ConversorDeMoedas(326,400, 400,20);		
 		app.setVisible(true);
 		
-	//conversor metodo
-		app.actionPerformed(null);
-		app.conversor();		
+	//conversor metodo			
+		app.conversor();
+		app.fontText();
 		
 	}
 
