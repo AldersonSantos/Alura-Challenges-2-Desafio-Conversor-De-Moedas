@@ -250,8 +250,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 			campoConversao.setFont(new Font("Arial", Font.CENTER_BASELINE, 22));
 			campoTextUsuario.setFont(new Font("Arial", Font.CENTER_BASELINE, 30));
 		}
-		System.out.println(numeroCaracteres);
-		System.out.println("Font size: " + campoConversao.getFont().getSize());
+	
 	}
 	
 
