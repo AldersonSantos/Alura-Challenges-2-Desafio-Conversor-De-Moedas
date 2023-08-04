@@ -33,12 +33,10 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 	private JMenuItem m1Real, m1Euro, m1Libra, m1PesoAr, m1PesoCl, m1Dolar, m2Real, m2Euro, m2Libra, m2PesoAr, m2PesoCl,
 			m2Dolar;
 	private JTextField campoTextUsuario;
-	private JLabel campoConversao, campoFormatInput, rotuloInputUser, taxaConversao;
+	private JLabel campoConversao,rotuloInputUser, taxaConversao;
 	private String inputText;
 	private int numeroCaracteres;
 	JPanel painelTextUser, painelrotulo, painelMenu2, painelMenu1, painelRotulo1, painelTaxa;
-
-	double textUsuario = 0.0;
 
 	/**
 	 * construtor permite criar um Jframe
@@ -82,7 +80,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		// iniciarJMenuBar
 		// menu1
 		menuBar1 = new JMenuBar();
-		m1Real = new JMenuItem("Brasil - Real".concat("   BRL"));		
+		m1Real = new JMenuItem("Brasil - Real".concat("   BRL"));
 		m1Euro = new JMenuItem("Europa - Euro".concat("   EUR"));
 		m1Libra = new JMenuItem("Reino Unido - Libra Esterlinas".concat("   GPB"));
 		m1PesoAr = new JMenuItem("Argentina - Peso Argentino".concat("   ARS"));
@@ -117,7 +115,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		// nomeM1 = opcao1.getText();
 		menu1 = new JMenu("De");
 		menu1.setOpaque(true);
-		menu1.setIcon(null);
+		// menu1.setIcon(null);
 		menu1.setBackground(Color.lightGray);
 		menu1.setFont(new Font("Arial", Font.BOLD, 12));
 
@@ -153,16 +151,8 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		menu2.addSeparator();
 		menu2.add(m2Dolar);
 
-		// JLabel
-		campoFormatInput = new JLabel();
-		campoFormatInput.setBackground(null);
-		campoFormatInput.setBorder(null);
-		campoFormatInput.setFont(new Font("Arial", Font.BOLD, 30));
-		// campoFormatInput.addKeyListener( this);
-
-		// add JLabel
+		// JLabel valor conversao
 		campoConversao = new JLabel();
-		campoConversao.setBackground(Color.blue);
 		campoConversao.setForeground(Color.black);
 		campoConversao.setFont(new Font("Arial", Font.BOLD, 45));
 		campoConversao.setVisible(true);
@@ -171,21 +161,20 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		rotuloInputUser = new JLabel();
 		rotuloInputUser.setForeground(Color.black);
 		rotuloInputUser.setText("Digite um valor válido e escolha a moeda");
-		rotuloInputUser.setFont(new Font("Arial", Font.BOLD, 12));
+		rotuloInputUser.setFont(new Font("Arial", Font.ITALIC, 12));
 		rotuloInputUser.setVisible(true);
 		// rotuloInputUser.setBounds(200, 520, 123, 123);
 
 		// Jlabel taxa
 		taxaConversao = new JLabel("1 BRL = 0.2584 BRL");
-		// taxaConversao.setBackground(Color.blue);
 		taxaConversao.setForeground(Color.black);
 		taxaConversao.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 11));
 		taxaConversao.setVisible(true);
 
-		// TTextField
+		// TTextField input user
 		campoTextUsuario = new JTextField(10);
 		campoTextUsuario.setBackground(null);
-		campoTextUsuario.setBorder(null);	
+		campoTextUsuario.setBorder(null);
 		campoTextUsuario.setForeground(Color.black);
 		campoTextUsuario.setText("");
 		campoTextUsuario.addKeyListener(this);
@@ -251,21 +240,20 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 	// dimunir font
 	public void fontText() {
 
-			for(int i = 0; i <= numeroCaracteres; i++) {		
-							
-				if (numeroCaracteres <= 10) {
-				campoConversao.setFont(new Font("Arial", Font.CENTER_BASELINE, 27));
-				campoTextUsuario.setFont(new Font("Arial", Font.CENTER_BASELINE, 32));
-				
-				
-			}else  if(numeroCaracteres > 10) {				
-				campoConversao.setFont(new Font("Arial", Font.CENTER_BASELINE, 22));
-				campoTextUsuario.setFont(new Font("Arial", Font.CENTER_BASELINE, 30));
-			}		
+		// for(int i = 0; i <= numeroCaracteres; i++) {
 
-		}	
+		if (numeroCaracteres <= 10) {
+			campoConversao.setFont(new Font("Arial", Font.CENTER_BASELINE, 27));
+			campoTextUsuario.setFont(new Font("Arial", Font.CENTER_BASELINE, 32));
 
+		} else if (numeroCaracteres > 10) {
+			campoConversao.setFont(new Font("Arial", Font.CENTER_BASELINE, 22));
+			campoTextUsuario.setFont(new Font("Arial", Font.CENTER_BASELINE, 30));
+		}
+		System.out.println(numeroCaracteres);
+		System.out.println("Font size: " + campoConversao.getFont().getSize());
 	}
+	
 
 	/**
 	 * Faz a conversao de moedas. limita a quantidade da String ".". Apaga texto
@@ -274,16 +262,16 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 	 * @return
 	 */
 	// conversor de moedas
-	public double conversor() {
+	public void conversor() {
 
 		// taxa
 		// real
-		double taxaCambioRealReal = 1.00;
-		double taxaCambioRealEuro = 0.1912;
-		double taxaCambioRealPesoAr = 58.0304;
-		double taxaCambioRealLibra = 0.164;
-		double taxaCambioRealPesoCl = 177.3908;
-		double taxaCambioRealDolar = 0.2081;
+		double taxaCambioRealReal = Double.valueOf(1.00);
+		double taxaCambioRealEuro = Double.valueOf(0.1912);
+		double taxaCambioRealPesoAr = Double.valueOf(58.0304);
+		double taxaCambioRealLibra = Double.valueOf(0.164);
+		double taxaCambioRealPesoCl = Double.valueOf(177.3908);
+		double taxaCambioRealDolar = Double.valueOf(0.2081);
 		// real JLabel taxa
 		String realReal = "1 BRL = 1.00 BRL";
 		String realEuro = "1 BRL = 0.1912 EUR";
@@ -293,12 +281,12 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		String realDolar = "1 BRL = 0.2081 USD";
 
 		// euro
-		double taxaCambioEuroEuro = 1.00;
-		double taxaCambioEuroReal = 5.2267;
-		double taxaCambioEuroLibra = 0.857;
-		double taxaCambioEuroPesoAr = 303.3058;
-		double taxaCambioEuroPesoCl = 927.1625;
-		double taxaCambioEuroDolar = 1.1019;
+		double taxaCambioEuroEuro = Double.valueOf(1.00);
+		double taxaCambioEuroReal = Double.valueOf(5.2267);
+		double taxaCambioEuroLibra = Double.valueOf(0.857);
+		double taxaCambioEuroPesoAr = Double.valueOf(303.3058);
+		double taxaCambioEuroPesoCl = Double.valueOf(927.1625);
+		double taxaCambioEuroDolar = Double.valueOf(1.1019);
 		// euro JLabel taxa
 		String euroEuro = "1 EUR = 1.00 EUR";
 		String euroReal = "1 EUR = 5.2267 BRL";
@@ -308,12 +296,12 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		String euroDolar = "1 EUR = 1.1019 USD";
 
 		// libra
-		double taxaCambioLibraLibra = 1.00;
-		double taxaCambioLibraEuro = 1.1669;
-		double taxaCambioLibraReal = 6.099;
-		double taxaCambioLibraPesoAr = 353.9282;
-		double taxaCambioLibraPesoCl = 1081.67;
-		double taxaCambioLibraDolar = 1.2857;
+		double taxaCambioLibraLibra = Double.valueOf(1.00);
+		double taxaCambioLibraEuro = Double.valueOf(1.1669);
+		double taxaCambioLibraReal = Double.valueOf(6.099);
+		double taxaCambioLibraPesoAr = Double.valueOf(353.9282);
+		double taxaCambioLibraPesoCl = Double.valueOf(1081.67);
+		double taxaCambioLibraDolar = Double.valueOf(1.2857);
 		// Libra JLabel taxa
 		String libraLibra = "1 GPB = 1.00  GPB";
 		String libraEuro = "1 GPB = 1.1669 EUR";
@@ -323,12 +311,12 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		String libraDolar = "1 GPB 1.2857 USD";
 
 		// peso argentino
-		double taxaCambioPesoArPesoAr = 1.00;
-		double taxaCambioPesoArReal = 0.01723;
-		double taxaCambioPesoArPesoCl = 3.0566;
-		double taxaCambioPesoArDolar = 0.0036;
-		double taxaCambioPesoArEuro = 0.003297;
-		double taxaCambioPesoArLibra = 0.002826;
+		double taxaCambioPesoArPesoAr = Double.valueOf(1.00);
+		double taxaCambioPesoArReal = Double.valueOf(0.01723);
+		double taxaCambioPesoArPesoCl = Double.valueOf(3.0566);
+		double taxaCambioPesoArDolar = Double.valueOf(0.0036);
+		double taxaCambioPesoArEuro = Double.valueOf(0.003297);
+		double taxaCambioPesoArLibra = Double.valueOf(0.002826);
 		// peso argentino JLabel taxa
 		String pesoArPesoAr = "1 ARS = 1.00 ARS";
 		String pPesoArReal = " 1 ARS = 0.01723 BRL";
@@ -338,12 +326,12 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		String pesoArLibra = "1 ARS = 0.002826 GPB";
 
 		// peso chileno
-		double taxaCambioPesoClPesoCl = 1.00;
-		double taxaCambioPesoClReal = 0.005637;
-		double taxaCambioPesoClEuro = 0.001079;
-		double taxaCambioPesoClLibra = 0.0009245;
-		double taxaCambioPesoClPesoAr = 0.3272;
-		double taxaCambioPesoClDolar = 0.001189;
+		double taxaCambioPesoClPesoCl = Double.valueOf(1.00);
+		double taxaCambioPesoClReal = Double.valueOf(0.005637);
+		double taxaCambioPesoClEuro = Double.valueOf(0.001079);
+		double taxaCambioPesoClLibra = Double.valueOf(0.0009245);
+		double taxaCambioPesoClPesoAr = Double.valueOf(0.3272);
+		double taxaCambioPesoClDolar = Double.valueOf(0.001189);
 		// peso chileno JLabel taxa
 		String pesoClPesoCl = "1 CLP = 1.00 CLP";
 		String pesoClReal = " 1 CLP = 0.005637 BRL";
@@ -353,12 +341,12 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		String pesoClLibra = "1 CLP = 0.0009245 GPB";
 
 		// dolar
-		double taxaCambioDolarReal = 4.7432;
-		double taxaCambioDolarDolar = 1.00;
-		double taxaCambioDolarEuro = 0.9075;
-		double taxaCambioDolarLibra = 0.7778;
-		double taxaCambioDolarPesoAr = 275.25;
-		double taxaCambioDolarPesoCl = 841.33;
+		double taxaCambioDolarReal = Double.valueOf(4.7432);
+		double taxaCambioDolarDolar = Double.valueOf(1.00);
+		double taxaCambioDolarEuro = Double.valueOf(0.9075);
+		double taxaCambioDolarLibra = Double.valueOf(0.7778);
+		double taxaCambioDolarPesoAr = Double.valueOf(275.25);
+		double taxaCambioDolarPesoCl = Double.valueOf(841.33);
 		// dolar JLabel taxa
 		String dolarReal = "1 USD =  4.7432 BRL";
 		String dolarDolar = "1 USD = 1.00 USD";
@@ -368,7 +356,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		String dolarPesoCl = "1 USD = 841.33 CLP";
 
 		// conversor
-		double conversor = 0.0;
+		double conversor = Double.valueOf(0.0);
 		String taxaConversor = "";
 
 		// input user
@@ -377,14 +365,15 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		String charPonto = ".";
 		int index1 = text.indexOf(".");
 		int index2 = text.lastIndexOf(".");
+
+		// moeda
+		NumberFormat valorDouble = NumberFormat.getNumberInstance(getLocale());		
+			
+		// get texto
+		numeroCaracteres = campoTextUsuario.getText().length();		
+
 		// verifivar se existe ponto na String
 		boolean checkPonto = text.contentEquals(charPonto);
-
-		// get texto
-		numeroCaracteres = campoTextUsuario.getText().length();
-		
-		// moeda
-		NumberFormat valorDouble = NumberFormat.getNumberInstance(getLocale());
 
 		// apagar o valor se houver mais de um "ponto"
 		if (text.contains(charPonto)) {
@@ -409,7 +398,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		// executar a conversao da moeda
 		if (numeroCaracteres == 0) {
 
-			conversor = 0.0;
+			conversor = Double.valueOf(0.0);
 
 		} else if (checkPonto) {// apagar ponto
 
@@ -637,8 +626,6 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		campoConversao.setText(valorDouble.format(conversor));
 		taxaConversao.setText(taxaConversor);
 
-		return conversor;
-
 	}
 
 	/**
@@ -697,22 +684,27 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		conversor();
 		fontText();
 	}
-/**
- * 
- * move o JPanel texto usuario quando digita
- * 
- */
+
+	/**
+	 * 
+	 * move o JPanel texto usuario quando digita
+	 * 
+	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
 
 		// mover JTextField
-		int localX = painelTextUser.getLocation().x;
-		int changeLocalX = localX - 8;
-		int changeLocalR = localX + 8;
+		int jTexLocalX = painelTextUser.getLocation().x;
+		int jTexLocalH = Integer.valueOf(55);
+		int jTexLimiteL = Integer.valueOf(120);
+		int jTexLimiteR = Integer.valueOf(20);
+		int changeLocalX = jTexLocalX - 8;
+		int changeLocalR = jTexLocalX + 8;
 
 		// KeyEvent
 		int x = KeyEvent.VK_BACK_SPACE;
 		char t = e.getKeyChar();
+		
 		// code char key
 		List<Number> number = new ArrayList<Number>();
 		number.add(46);
@@ -726,21 +718,22 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		number.add(55);
 		number.add(56);
 		number.add(57);
+		
 		// mover se apertar key ou apagar string
-		if (t == x && localX <= 120) {
-			painelTextUser.setLocation(changeLocalR, 55);
+		if (t == x && jTexLocalX <= jTexLimiteL) {
+			painelTextUser.setLocation(changeLocalR, jTexLocalH);
 		} else {
 			for (int i = 0; i < number.size(); i++) {
 
 				Number ref = number.get(i);
 
-				if (t == ref.hashCode() && localX >= 20) {
+				if (t == ref.hashCode() && jTexLocalX >= jTexLimiteR) {
 
-					painelTextUser.setLocation(changeLocalX, 55);
+					painelTextUser.setLocation(changeLocalX, jTexLocalH);
 				}
 			}
-		}		
-		
+		}
+
 	}
 
 	@Override
