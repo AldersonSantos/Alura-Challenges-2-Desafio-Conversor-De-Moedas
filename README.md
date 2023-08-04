@@ -17,7 +17,7 @@ Nesse desafio conheci alguns recursos gráficos disponível no Java: <br>
 JPanel, JMenu , JMenuItem, JButton e outros componentes do pacote Java swing.<br>
 
 Também compreendi melhor, o uso de String, implementações e conheci outras classes essenciais para programar objetos no Java.<br> 
-A parte gráfica precisa melhor. Esta missão fica pro próximo challenger!<br> 
+A parte gráfica precisa melhorar. Esta missão fica pro próximo challenger!<br> 
 
 ![Desktop Screenshot 2023 08 03 - 20 07 56 00](https://github.com/AldersonSantos/Alura-Challenges-2-Desafio-Conversor-De-Moedas/assets/131020135/d7919a59-f139-4f69-b758-8ffd7ad1b791)
 
