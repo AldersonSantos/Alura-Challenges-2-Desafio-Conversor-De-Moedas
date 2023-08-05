@@ -19,11 +19,9 @@ JPanel, JMenu , JMenuItem, JButton e outros componentes do pacote Java swing.<br
 Também compreendi melhor, o uso de String, implementações e conheci outras classes essenciais para programar objetos no Java.<br> 
 A parte gráfica precisa melhorar. Esta missão fica pro próximo challenger!<br> 
 
-![Desktop Screenshot 2023 08 03 - 20 07 56 00](https://github.com/AldersonSantos/Alura-Challenges-2-Desafio-Conversor-De-Moedas/assets/131020135/d7919a59-f139-4f69-b758-8ffd7ad1b791)
-
+![Desktop Screenshot 2023 08 05 - 10 05 14 89](https://github.com/AldersonSantos/Alura-Challenges-2-Desafio-Conversor-De-Moedas/assets/131020135/8c56f561-506a-42ec-88bc-37cbf2536a24)
 
 Recebi mais uma badge bacana do Alura Challenge! valeu One e Alura!<br>
-
 
 ![cms_files_10224_1671211937Prancheta_8](https://github.com/AldersonSantos/Alura-Challenges-2-Desafio-Conversor-De-Moedas/assets/131020135/7543cba7-31bb-4c91-b973-bc4506944f36)
 
