@@ -10,13 +10,17 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 /**
  * super class conversor de moedas.
@@ -33,13 +37,14 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 	private JMenuItem m1Real, m1Euro, m1Libra, m1PesoAr, m1PesoCl, m1Dolar, m2Real, m2Euro, m2Libra, m2PesoAr, m2PesoCl,
 			m2Dolar;
 	private JTextField campoTextUsuario;
-	private JLabel campoConversao,rotuloInputUser, taxaConversao;
+	private JLabel campoConversao, rotuloInputUser, taxaConversao;
 	private String inputText;
 	private int numeroCaracteres;
-	JPanel painelTextUser, painelrotulo, painelMenu2, painelMenu1, painelRotulo1, painelTaxa;
+	private JPanel painelTextUser, painelrotulo, painelMenu2, painelMenu1, painelRotulo1, painelTaxa;
+	private JButton exit;
 
 	/**
-	 * construtor permite criar um Jframe
+	 * * construtor permite criar um Jframe
 	 * 
 	 * @param x
 	 * @param y
@@ -58,8 +63,9 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 
 		// panel
 		JPanel painel = new JPanel();
-		painel.setBackground(Color.lightGray);
-		this.getContentPane().add(painel);
+		painel.setBackground(Color.lightGray);		
+		Border borda = BorderFactory.createEmptyBorder();
+		painel.setBorder(borda);	
 		this.add(painel);
 
 		// tipo de String e quantidade
@@ -115,7 +121,6 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		// nomeM1 = opcao1.getText();
 		menu1 = new JMenu("De");
 		menu1.setOpaque(true);
-		// menu1.setIcon(null);
 		menu1.setBackground(Color.lightGray);
 		menu1.setFont(new Font("Arial", Font.BOLD, 12));
 
@@ -163,7 +168,6 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		rotuloInputUser.setText("Digite um valor válido e escolha a moeda");
 		rotuloInputUser.setFont(new Font("Arial", Font.ITALIC, 12));
 		rotuloInputUser.setVisible(true);
-		// rotuloInputUser.setBounds(200, 520, 123, 123);
 
 		// Jlabel taxa
 		taxaConversao = new JLabel("1 BRL = 0.2584 BRL");
@@ -176,9 +180,8 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		campoTextUsuario.setBackground(null);
 		campoTextUsuario.setBorder(null);
 		campoTextUsuario.setForeground(Color.black);
-		campoTextUsuario.setText("");
-		campoTextUsuario.addKeyListener(this);
-		// campoTextUsuario.setNavigationFilter(null);
+		campoTextUsuario.setText("");		
+		campoTextUsuario.addKeyListener(this);	
 
 		// Jpainel
 		painelMenu2 = new JPanel();
@@ -216,19 +219,32 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 
 		// Jpanel3
 		painelTextUser = new JPanel();
-		painelTextUser.setSize(300, 40);
-		painelTextUser.setLocation(132, 55);
+		painelTextUser.setSize(285, 40);
+		painelTextUser.setLocation(145, 55);
 		painelTextUser.setBackground(Color.lightGray);
 		this.add(painelTextUser);
 		painelTextUser.add(campoTextUsuario);
 
 		// Jpanel4
 		painelrotulo = new JPanel();
-		painelrotulo.setSize(400, 50);
-		painelrotulo.setLocation(-50, 30);
+		painelrotulo.setSize(280, 20);
+		painelrotulo.setLocation(15, 30);
 		painelrotulo.setBackground(Color.lightGray);
 		this.add(painelrotulo);
 		painelrotulo.add(rotuloInputUser);
+
+		// JButton sair
+		exit = new JButton();
+		exit.setBounds(267, 318, 30, 30);
+		exit.setText("SAIR");
+		Border borda = BorderFactory.createLineBorder(Color.DARK_GRAY, 1);
+		exit.setBorder(borda);
+		exit.setForeground(Color.LIGHT_GRAY);
+		exit.setFont(new Font("Arial", Font.CENTER_BASELINE, 10));
+		exit.setBackground(Color.gray);
+		exit.setOpaque(true);
+		exit.addActionListener(this);
+		this.add(exit);
 
 	}
 
@@ -240,8 +256,6 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 	// dimunir font
 	public void fontText() {
 
-		// for(int i = 0; i <= numeroCaracteres; i++) {
-
 		if (numeroCaracteres <= 10) {
 			campoConversao.setFont(new Font("Arial", Font.CENTER_BASELINE, 27));
 			campoTextUsuario.setFont(new Font("Arial", Font.CENTER_BASELINE, 32));
@@ -250,9 +264,8 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 			campoConversao.setFont(new Font("Arial", Font.CENTER_BASELINE, 22));
 			campoTextUsuario.setFont(new Font("Arial", Font.CENTER_BASELINE, 30));
 		}
-	
+
 	}
-	
 
 	/**
 	 * Faz a conversao de moedas. limita a quantidade da String ".". Apaga texto
@@ -349,7 +362,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		// dolar JLabel taxa
 		String dolarReal = "1 USD =  4.7432 BRL";
 		String dolarDolar = "1 USD = 1.00 USD";
-		String dolarEuro = "1 =  0.9075 EUR";
+		String dolarEuro = "1 USD  0.9075 EUR";
 		String dolarLibra = " 1 USD = 0.7778 GPB";
 		String dolarPesoAr = "1 USD = 275.25 ARS";
 		String dolarPesoCl = "1 USD = 841.33 CLP";
@@ -366,10 +379,10 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		int index2 = text.lastIndexOf(".");
 
 		// moeda
-		NumberFormat valorDouble = NumberFormat.getNumberInstance(getLocale());		
-			
+		NumberFormat valorDouble = NumberFormat.getNumberInstance(getLocale());
+
 		// get texto
-		numeroCaracteres = campoTextUsuario.getText().length();		
+		numeroCaracteres = campoTextUsuario.getText().length();
 
 		// verifivar se existe ponto na String
 		boolean checkPonto = text.contentEquals(charPonto);
@@ -385,10 +398,14 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 				for (int i = 0; i <= text.length(); i++) {
 
 					campoTextUsuario.setText(new String(campoTextUsuario.getText()).replace(text, "0"));
-					painelTextUser.setLocation(132, 55);
+					painelTextUser.setLocation(145, 55);
 					campoTextUsuario.setSelectionStart(0);
 
 				}
+				// alerta valor inválido
+				JOptionPane.showMessageDialog(
+						campoConversao, "Digite novamente", "Valor inválido!",
+						JOptionPane.ERROR_MESSAGE);
 
 			}
 
@@ -633,10 +650,14 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 	 * 
 	 */
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {		
+		
+		if (e.getActionCommand() == exit.getActionCommand()) {
+			System.exit(0);
+		}
 
 		if (m1Real.isArmed()) {
-			menu1.setText(e.getActionCommand());
+			menu1.setText(e.getActionCommand());			
 		}
 
 		if (m1Euro.isArmed()) {
@@ -695,15 +716,15 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		// mover JTextField
 		int jTexLocalX = painelTextUser.getLocation().x;
 		int jTexLocalH = Integer.valueOf(55);
-		int jTexLimiteL = Integer.valueOf(120);
-		int jTexLimiteR = Integer.valueOf(20);
+		int jTexLimiteL = Integer.valueOf(137);
+		int jTexLimiteR = Integer.valueOf(25);
 		int changeLocalX = jTexLocalX - 8;
 		int changeLocalR = jTexLocalX + 8;
 
 		// KeyEvent
 		int x = KeyEvent.VK_BACK_SPACE;
-		char t = e.getKeyChar();
-		
+		char t = e.getKeyChar();		
+
 		// code char key
 		List<Number> number = new ArrayList<Number>();
 		number.add(46);
@@ -720,11 +741,12 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		
 		// mover se apertar key ou apagar string
 		if (t == x && jTexLocalX <= jTexLimiteL) {
-			painelTextUser.setLocation(changeLocalR, jTexLocalH);
-		} else {
-			for (int i = 0; i < number.size(); i++) {
 
-				Number ref = number.get(i);
+			painelTextUser.setLocation(changeLocalR, jTexLocalH);
+
+		} else {
+
+			for (Number ref : number) {
 
 				if (t == ref.hashCode() && jTexLocalX >= jTexLimiteR) {
 
