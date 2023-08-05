@@ -21,6 +21,12 @@ A parte gráfica precisa melhorar. Esta missão fica pro próximo challenger!<br
 
 ![Desktop Screenshot 2023 08 05 - 10 05 14 89](https://github.com/AldersonSantos/Alura-Challenges-2-Desafio-Conversor-De-Moedas/assets/131020135/8c56f561-506a-42ec-88bc-37cbf2536a24)
 
+![Desktop Screenshot 2023 08 05 - 10 10 54 62](https://github.com/AldersonSantos/Alura-Challenges-2-Desafio-Conversor-De-Moedas/assets/131020135/a4a5a7fe-3bfb-4eb1-bb2e-9eebb9a86a07)
+
+![Desktop Screenshot 2023 08 05 - 10 09 28 28](https://github.com/AldersonSantos/Alura-Challenges-2-Desafio-Conversor-De-Moedas/assets/131020135/667a50ca-d477-4e6b-8543-0ac58bce5bbb)
+
+
+
 Recebi mais uma badge bacana do Alura Challenge! valeu One e Alura!<br>
 
 ![cms_files_10224_1671211937Prancheta_8](https://github.com/AldersonSantos/Alura-Challenges-2-Desafio-Conversor-De-Moedas/assets/131020135/7543cba7-31bb-4c91-b973-bc4506944f36)
