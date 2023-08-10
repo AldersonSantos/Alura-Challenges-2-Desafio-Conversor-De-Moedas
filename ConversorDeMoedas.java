@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,8 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 	private JPanel painelTextUser, painelrotulo, painelMenu2, painelMenu1, painelRotulo1, painelTaxa;
 	private JButton exit;
 
+	private NumberFormat valorDouble;
+
 	/**
 	 * * construtor permite criar um Jframe
 	 * 
@@ -63,9 +66,9 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 
 		// panel
 		JPanel painel = new JPanel();
-		painel.setBackground(Color.lightGray);		
+		painel.setBackground(Color.lightGray);
 		Border borda = BorderFactory.createEmptyBorder();
-		painel.setBorder(borda);	
+		painel.setBorder(borda);
 		this.add(painel);
 
 		// tipo de String e quantidade
@@ -180,8 +183,8 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		campoTextUsuario.setBackground(null);
 		campoTextUsuario.setBorder(null);
 		campoTextUsuario.setForeground(Color.black);
-		campoTextUsuario.setText("");		
-		campoTextUsuario.addKeyListener(this);	
+		campoTextUsuario.setText("");
+		campoTextUsuario.addKeyListener(this);
 
 		// Jpainel
 		painelMenu2 = new JPanel();
@@ -271,7 +274,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 	 * Faz a conversao de moedas. limita a quantidade da String ".". Apaga texto
 	 * digitado pelo usuario se o valor digitado conter mais de 1 ".".
 	 * 
-	 * @return
+	 *
 	 */
 	// conversor de moedas
 	public void conversor() {
@@ -378,9 +381,6 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		int index1 = text.indexOf(".");
 		int index2 = text.lastIndexOf(".");
 
-		// moeda
-		NumberFormat valorDouble = NumberFormat.getNumberInstance(getLocale());
-
 		// get texto
 		numeroCaracteres = campoTextUsuario.getText().length();
 
@@ -403,8 +403,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 
 				}
 				// alerta valor inválido
-				JOptionPane.showMessageDialog(
-						campoConversao, "Digite novamente", "Valor inválido!",
+				JOptionPane.showMessageDialog(campoConversao, "Digite novamente", "Valor inválido!",
 						JOptionPane.ERROR_MESSAGE);
 
 			}
@@ -638,6 +637,15 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 			}
 		}
 
+		// conversao com 2 casas decimais
+		if (conversor < 1000) {
+			valorDouble = new DecimalFormat("0.00");
+
+		} else {
+
+			valorDouble = new DecimalFormat("0,000.00");
+		}
+
 		// atualiza a conversao da moeda no JLabel
 		campoConversao.setText(valorDouble.format(conversor));
 		taxaConversao.setText(taxaConversor);
@@ -650,14 +658,14 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 	 * 
 	 */
 	@Override
-	public void actionPerformed(ActionEvent e) {		
-		
+	public void actionPerformed(ActionEvent e) {
+
 		if (e.getActionCommand() == exit.getActionCommand()) {
 			System.exit(0);
 		}
 
 		if (m1Real.isArmed()) {
-			menu1.setText(e.getActionCommand());			
+			menu1.setText(e.getActionCommand());
 		}
 
 		if (m1Euro.isArmed()) {
@@ -723,7 +731,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 
 		// KeyEvent
 		int x = KeyEvent.VK_BACK_SPACE;
-		char t = e.getKeyChar();		
+		char t = e.getKeyChar();
 
 		// code char key
 		List<Number> number = new ArrayList<Number>();
@@ -738,7 +746,7 @@ public class ConversorDeMoedas extends JFrame implements ActionListener, KeyList
 		number.add(55);
 		number.add(56);
 		number.add(57);
-		
+
 		// mover se apertar key ou apagar string
 		if (t == x && jTexLocalX <= jTexLimiteL) {
 
